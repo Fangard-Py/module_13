@@ -50,6 +50,11 @@ async def main_meny(message):
     await message.answer('Выберите пункт меню:', reply_markup=kbi)
 
 
+@dp.message_handler(text='Информация')
+async def inform(message):
+    await message.answer('Информация о нашем боте')
+
+
 @dp.callback_query_handler(text='formulas')
 async def main_meny(call):
     await call.message.answer('10 * вес + 6.25 * рост - 5 * возраст + 5')
@@ -67,7 +72,8 @@ async def all_message(message):
 
 kb = ReplyKeyboardMarkup(resize_keyboard=True)
 button = KeyboardButton(text='Рассчитать')
-kb.add(button)
+button2 = KeyboardButton(text='Информация')
+kb.add(button, button2)
 
 kbi = InlineKeyboardMarkup(resize_keyboard=True)
 buttonI = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
